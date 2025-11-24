@@ -14,15 +14,30 @@ class WidgetTree extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cha Coding'),
+        title: ValueListenableBuilder(
+          valueListenable: isDarkModeNotifier,
+          builder: (BuildContext context, dynamic isDarkMode, Widget? child) {
+            return isDarkMode
+                ? Text('Cha Coding', style: TextStyle(color: Colors.yellow))
+                : Text('Cha Coding', style: TextStyle(color: Colors.white));
+          },
+        ),
         backgroundColor: Colors.teal[800],
         actions: [
           ValueListenableBuilder(
             valueListenable: isDarkModeNotifier,
             builder: (BuildContext context, dynamic isDarkMode, Widget? child) {
               return isDarkMode
+
+                  ? Text("Dark Mode", style: TextStyle(fontSize: 18.0))
+                  : Text(
+                      "Light Mode",
+                      style: TextStyle(fontSize: 18.0, color: Colors.white),
+                    );
+
                   ? Text("Dark mode", style: TextStyle(fontSize: 18.0))
                   : Text("Light mode", style: TextStyle(fontSize: 18.0));
+
             },
           ),
           IconButton(
@@ -35,7 +50,9 @@ class WidgetTree extends StatelessWidget {
                   (BuildContext context, dynamic isDarkMode, Widget? child) {
                     return isDarkMode
                         ? Icon(Icons.dark_mode)
+                       : Icon(Icons.light_mode, color: Colors.white);
                         : Icon(Icons.light_mode);
+
                   },
             ),
           ),
