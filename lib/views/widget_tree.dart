@@ -28,11 +28,16 @@ class WidgetTree extends StatelessWidget {
             valueListenable: isDarkModeNotifier,
             builder: (BuildContext context, dynamic isDarkMode, Widget? child) {
               return isDarkMode
+
                   ? Text("Dark Mode", style: TextStyle(fontSize: 18.0))
                   : Text(
                       "Light Mode",
                       style: TextStyle(fontSize: 18.0, color: Colors.white),
                     );
+
+                  ? Text("Dark mode", style: TextStyle(fontSize: 18.0))
+                  : Text("Light mode", style: TextStyle(fontSize: 18.0));
+
             },
           ),
           IconButton(
@@ -45,7 +50,9 @@ class WidgetTree extends StatelessWidget {
                   (BuildContext context, dynamic isDarkMode, Widget? child) {
                     return isDarkMode
                         ? Icon(Icons.dark_mode)
-                        : Icon(Icons.light_mode, color: Colors.white);
+                       : Icon(Icons.light_mode, color: Colors.white);
+                        : Icon(Icons.light_mode);
+
                   },
             ),
           ),
